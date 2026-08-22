@@ -1,0 +1,21 @@
+default: fmt lint install 
+
+build:
+	go build -v ./...
+
+install: build
+	go install -v ./...
+
+lint:
+	golangci-lint run
+
+fmt:
+	gofmt -s -w -e .
+
+test:
+	go test -v -cover -timeout=120s  ./...
+
+testacc:
+	TF_ACC=1 go test -v -cover -timeout 120m ./...
+
+.PHONY: fmt lint test testacc build install generate

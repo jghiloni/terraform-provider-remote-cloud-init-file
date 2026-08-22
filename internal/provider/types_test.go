@@ -18,7 +18,7 @@ permissions: "0640"
 defer: true
 content: |
   YjY0IHRlc3Q=`,
-  	`encoding: gzip
+		`encoding: gzip
 path: /testgzip
 permissions: "0700"
 content: !!binary |
@@ -37,19 +37,19 @@ content: "plain test"`,
 		Expect(wf.Owner).To(Equal(owner))
 		Expect(wf.Permissions).To(Equal(permissions))
 		Expect(wf.Content.Equals(content)).To(BeTrue())
-	}, 
-	Entry("b64", wfs[0], "b64", "/testb64", "root:root", "0640", true, "b64 test"), 
-	Entry("gzip", wfs[1], "gzip", "/testgzip", "", "0700", false, "gzip test"),
-	Entry("plain", wfs[2], "", "/test", "", "", false, "plain test"),
-	Entry("empty", wfs[3], "", "/testempty", "", "", false, ""),
+	},
+		Entry("b64", wfs[0], "b64", "/testb64", "root:root", "0640", true, "b64 test"),
+		Entry("gzip", wfs[1], "gzip", "/testgzip", "", "0700", false, "gzip test"),
+		Entry("plain", wfs[2], "", "/test", "", "", false, "plain test"),
+		Entry("empty", wfs[3], "", "/testempty", "", "", false, ""),
 	)
 	DescribeTable("Unmarshal", func(yml string, encoding string, path string, owner string, permissions string, deferred bool, content string) {
 		wf := provider.WriteFile{
-			Encoding: encoding,
-			Path: path,
-			Owner: owner,
+			Encoding:    encoding,
+			Path:        path,
+			Owner:       owner,
 			Permissions: permissions,
-			Defer: deferred,
+			Defer:       deferred,
 		}
 
 		wf.SetContents(content)
@@ -60,10 +60,10 @@ content: "plain test"`,
 		var wf2 provider.WriteFile
 		Expect(yaml.Unmarshal([]byte(yml), &wf2)).NotTo(HaveOccurred())
 		Expect(wf).To(Equal(wf2))
-	}, 
-	Entry("b64", wfs[0], "b64", "/testb64", "root:root", "0640", true, "b64 test"), 
-	Entry("gzip", wfs[1], "gzip", "/testgzip", "", "0700", false, "gzip test"),
-	Entry("plain", wfs[2], "", "/test", "", "", false, "plain test"),
-	Entry("empty", wfs[3], "", "/testempty", "", "", false, ""),
+	},
+		Entry("b64", wfs[0], "b64", "/testb64", "root:root", "0640", true, "b64 test"),
+		Entry("gzip", wfs[1], "gzip", "/testgzip", "", "0700", false, "gzip test"),
+		Entry("plain", wfs[2], "", "/test", "", "", false, "plain test"),
+		Entry("empty", wfs[3], "", "/testempty", "", "", false, ""),
 	)
 })

@@ -22,7 +22,7 @@ type WriteFile struct {
 
 func (w *WriteFile) SetContents(s string) {
 	w.Content = writeFileContents{
-		content: s,
+		content:  s,
 		encoding: w.Encoding,
 	}
 }
@@ -74,14 +74,7 @@ func (w *WriteFile) UnmarshalYAML(node *yaml.Node) error {
 		i.Content.encoding = "b64"
 	}
 
-	*w = WriteFile{
-		Encoding:    i.Encoding,
-		Path:        i.Path,
-		Owner:       i.Owner,
-		Permissions: i.Permissions,
-		Defer:       i.Defer,
-		Content:     i.Content,
-	}
+	*w = WriteFile(i)
 
 	return nil
 }

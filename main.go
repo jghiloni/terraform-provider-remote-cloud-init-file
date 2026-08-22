@@ -3,10 +3,10 @@ package main
 import (
 	"context"
 	"flag"
+	"github.com/jghiloni/terraform-provider-remote-cloud-init-file/internal/provider"
 	"log"
 	"os"
 	"os/signal"
-	"github.com/jghiloni/terraform-provider-remote-cloud-init-file/internal/provider"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
 )

@@ -9,7 +9,6 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/resource"
 )
 
-
 type WriteFileProvider struct {
 	version string
 }
@@ -39,7 +38,7 @@ func (w *WriteFileProvider) Resources(context.Context) []func() resource.Resourc
 // Schema implements [provider.Provider].
 func (w *WriteFileProvider) Schema(_ context.Context, _ provider.SchemaRequest, resp *provider.SchemaResponse) {
 	resp.Schema = schema.Schema{
-		Description: "A provider for creating cloud-init write_file entries",
+		Description:         "A provider for creating cloud-init write_file entries",
 		MarkdownDescription: "This provider has no configurations",
 	}
 }

@@ -70,7 +70,7 @@ func (e *enumValidator) ValidateString(ctx context.Context, req validator.String
 	if req.ConfigValue.IsNull() {
 		return
 	}
-	
+
 	if req.ConfigValue.IsUnknown() {
 		resp.Diagnostics.Append(validatordiag.InvalidAttributeValueMatchDiagnostic(
 			req.Path,
